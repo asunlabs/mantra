@@ -1,7 +1,10 @@
 import * as datetime from "@/module/datetime";
 import * as math from "@/module/math";
 
-export default {
+const Mantra = {
   datetime,
   math,
 };
+
+export default Mantra;
+export { datetime, math };
