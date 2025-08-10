@@ -1,0 +1,19 @@
+{
+  "name": "@asunlabs/mantra",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "pub": "pnpm publish --access public"
+  },
+  "keywords": [],
+  "author": "developerasun",
+  "license": "ISC",
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "typescript": "^5.9.2"
+  }
+}
