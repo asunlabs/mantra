@@ -7,6 +7,9 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "jest --watch --detectOpenHandles",
+    "v:patch": "pnpm version patch",
+    "v:minor": "pnpm version minor",
+    "v:major": "pnpm version major",
     "pub": "pnpm publish --access public"
   },
   "keywords": [],
