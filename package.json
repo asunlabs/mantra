@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
+    "test": "jest --watch --detectOpenHandles",
     "pub": "pnpm publish --access public"
   },
   "keywords": [],
@@ -13,6 +14,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.9.0",
   "devDependencies": {
+    "@jest/globals": "^30.0.5",
+    "ts-jest": "^29.4.1",
     "tsup": "^8.1.0",
     "typescript": "^5.9.2"
   }
