@@ -1,5 +1,9 @@
 import { expect, test } from "@jest/globals";
-import { withDelay, withTimeout } from "../src/module/promise";
+import {
+  withDelay,
+  withSafeSequence,
+  withTimeout,
+} from "../src/module/promise";
 
 test("Should wait 3 seconds and resolves", async () => {
   expect(
@@ -22,4 +26,27 @@ test("Should wait 3 seconds and rejects", async () => {
       ms: 3_000,
     })
   ).rejects.toThrow();
+});
+
+test.only("Should return proper values", async () => {
+  const promises = [
+    Promise.resolve(0),
+    Promise.resolve(1),
+    Promise.reject("2 error")
+      .then()
+      .catch((e) => {
+        throw e;
+      }),
+    Promise.resolve(3),
+    Promise.reject("4 error")
+      .then()
+      .catch((e) => {
+        throw e;
+      }),
+  ];
+  withSafeSequence<number>({
+    promises,
+    onError: async (err) => console.log(err),
+    onSuccess: async (data) => console.log(data),
+  });
 });
