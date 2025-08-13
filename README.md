@@ -29,3 +29,7 @@ feel free to open PR.
 MIT.
 
 Open Source.
+
+## todo list
+
+- docs: [vitepress](https://vitepress.dev/)
