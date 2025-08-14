@@ -10,7 +10,7 @@ function fromUTC() {
   return { full, short };
 }
 
-function calculateTimeRange(offset: number): [string, string] {
+function fromToday(offset: number) {
   const date = new Date();
   const kstDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
   const today = kstDate.toISOString().slice(0, 10);
@@ -18,7 +18,7 @@ function calculateTimeRange(offset: number): [string, string] {
   kstDate.setDate(kstDate.getDate() - offset);
   const interval = kstDate.toISOString().slice(0, 10);
 
-  return [today, interval];
+  return { today, interval };
 }
 
-export { fromUTC, calculateTimeRange };
+export { fromUTC, fromToday };
