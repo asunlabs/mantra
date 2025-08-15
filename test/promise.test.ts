@@ -1,20 +1,17 @@
-import { expect, test } from "@jest/globals";
-import {
-  withDelay,
-  withSafeSequence,
-  withTimeout,
-} from "../src/module/promise";
+import { expect, test } from '@jest/globals';
+import { withDelay, withSafeSequence, withTimeout } from '../src/module/promise';
+import { unstable_AsyncQueue } from '../src/module/queue';
 
-test("Should wait 3 seconds and resolves", async () => {
+test('Should wait 3 seconds and resolves', async () => {
   expect(
     await withDelay({
-      callback: () => Promise.resolve(console.log("abc")),
+      callback: () => Promise.resolve(console.log('abc')),
       ms: 3_000,
     })
   ).toBeUndefined();
 });
 
-test("Should wait 3 seconds and rejects", async () => {
+test('Should wait 3 seconds and rejects', async () => {
   await expect(
     withTimeout({
       callback: async () =>
@@ -28,17 +25,17 @@ test("Should wait 3 seconds and rejects", async () => {
   ).rejects.toThrow();
 });
 
-test.only("Should return proper values", async () => {
+test('Should return proper values', async () => {
   const promises = [
     Promise.resolve(0),
     Promise.resolve(1),
-    Promise.reject("2 error")
+    Promise.reject('2 error')
       .then()
       .catch((e) => {
         throw e;
       }),
     Promise.resolve(3),
-    Promise.reject("4 error")
+    Promise.reject('4 error')
       .then()
       .catch((e) => {
         throw e;
@@ -49,4 +46,33 @@ test.only("Should return proper values", async () => {
     onError: async (err) => console.log(err),
     onSuccess: async (data) => console.log(data),
   });
+});
+
+test.only('Should enqueue and dequeue queue', async () => {
+  const promises = [
+    Promise.resolve(0),
+    Promise.resolve(1),
+    Promise.reject('2 error')
+      .then()
+      .catch((e) => {
+        throw e;
+      }),
+    Promise.resolve(3),
+    Promise.reject('4 error')
+      .then()
+      .catch((e) => {
+        return e;
+      }),
+  ];
+
+  const queue = new unstable_AsyncQueue();
+
+  queue.enqueue({ task: () => promises[0] });
+  queue.enqueue({ task: () => promises[2] });
+  queue.enqueue({ task: () => promises[2] });
+  await queue.dequeue();
+  await queue.dequeue();
+
+  const secondJobResult = queue.track({ jobId: 1 });
+  expect(secondJobResult).toBe(null);
 });
