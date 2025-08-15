@@ -1,0 +1,21 @@
+module.exports = {
+  trailingComma: 'es5',
+  semi: true,
+  tabWidth: 2,
+  singleQuote: true,
+  printWidth: 120,
+  useTabs: false,
+  arrowParens: 'always',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  jsxSingleQuote: false,
+  endOfLine: 'auto',
+  overrides: [
+    {
+      files: '*.{md,yml,yaml,json}',
+      options: {
+        tabWidth: 2,
+      },
+    },
+  ],
+};
