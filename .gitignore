@@ -4,6 +4,8 @@
 
 # Node modules
 /node_modules/
+_vocs/node_modules
+_vocs/docs/dist
 
 # Logs
 /logs/

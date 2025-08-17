@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vocs dev",
-    "build": "vocs build",
+    "build": "vocs build && rsync -a ./docs/dist/ ../docs/",
     "preview": "vocs preview"
   },
   "dependencies": {
