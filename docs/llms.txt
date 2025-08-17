@@ -2,5 +2,5 @@
 
 ## Docs
 
-- [Example](/example): This is an example page.
-- [Get started](/getting-started): Hello world!
+- [Example](/mantra/example): This is an example page.
+- [Get started](/mantra/getting-started): Hello world!
