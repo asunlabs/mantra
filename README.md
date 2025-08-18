@@ -1,3 +1,6 @@
+![GitHub last commit](https://img.shields.io/github/last-commit/asunlabs/mantra)
+![Static Badge](https://img.shields.io/badge/Is_Jake_Working_On_This_Now-Yes-green)
+
 # @asunlabs/mantra
 
 A Magical Spell For Typescript Developers.
